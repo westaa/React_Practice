@@ -12,15 +12,19 @@ class SearchBar extends Component {
   //functional components do not have state, only class based components do
   render () {
     return (
-    <div>
+    <div className="search-bar">
       <input
       value={this.state.term}
       //above is controlled component, has it's value set by state, value only changes when state changes
-      onChange={event => this.setState({ term: event.target.value })} />
+      onChange={event => this.onInputChange(event.target.value)} />
     </div>
     )
   }
 
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
+  }
 }
 
 export default SearchBar;
